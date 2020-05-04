@@ -50,7 +50,7 @@ const renderProfiles = (credit) => {
       let cast = credit.cast[i];
       let div = document.createElement('div');
       div.setAttribute('class' , 'actors')
-      div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px  class ="movieImg"/><h3  class="movieList-heading">${cast.name}</h3>`
+      div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px  class ="movieImg"/><h3 class = "movieList-Heading">${cast.name}</h3>`
      CONTAINER.appendChild(div) 
     }
 
@@ -93,6 +93,7 @@ const fetchMovie = async (movieId) => {
 
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovies = (movies) => {
+  row.classList.add('row');
   movies.map((movie) => {
     const movieDiv = document.createElement("div");
     movieDiv.setAttribute('class' , 'movieList')
@@ -100,7 +101,7 @@ const renderMovies = (movies) => {
         <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
       movie.title
     } poster" class = "movieImg">
-        <h3 class="movieList-heading">${movie.title}</h3>`;
+        <h3 class="movieList-Heading">${movie.title}</h3>`;
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
@@ -109,15 +110,17 @@ const renderMovies = (movies) => {
 };
 
 // You'll need to play with this function in order to add features and enhance the style.
+const row = document.querySelector(".row")
 const renderMovie = (movie,credit) => {
-  CONTAINER.innerHTML = `
-    <div class="row">
-        <div class="col-md-4">
+  row.classList.remove("row");
+  CONTAINER.innerHTML = 
+    `
+        <div class="movie-poster">
              <img id="movie-backdrop" src=${
                BACKDROP_BASE_URL + movie.backdrop_path
              } class = "movie-poster">
         </div>
-        <div class="col-md-8">
+        <div class="details">
             <h2 id="movie-title">${movie.title}</h2>
             <p id="movie-release-date"><b>Release Date:</b> ${
               movie.release_date
@@ -127,16 +130,24 @@ const renderMovie = (movie,credit) => {
             <p id="movie-overview">${movie.overview}</p>
         </div>
         </div>
-            <h3>Cast:</h3>
+            <h3 class= "castHeading">Cast:</h3>
             <ul id="actors" class="list-unstyled">
             </ul>
-    </div>`;
+        <div class="movieCard">
+        
+        <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
+      movie.title
+    } poster" class = "movieImg">
+        <h3 class="movieList-Heading">${movie.title}</h3>
+        </div>`
+    
     for(let i = 0; i < 5; i++){
       let cast = credit.cast[i];
       let actors = document.querySelector('#actors');
-      let li = document.createElement('li');
-      li.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px class="movieImg"/><h3>${cast.name}<h3>`
-      actors.appendChild(li);
+      let div = document.createElement('div');
+      div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px/> <h3>${cast.name}</h3>
+      `
+      actors.appendChild(div);
       
     }
 };
