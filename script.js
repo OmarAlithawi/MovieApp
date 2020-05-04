@@ -4,27 +4,24 @@ const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const PROFILE_BASE_URL = "http://image.tmdb.org/t/p/w185";
 const BACKDROP_BASE_URL = "http://image.tmdb.org/t/p/w780";
 const CONTAINER = document.querySelector(".container");
-const PROFILE_BTN = document.querySelector('#profile-btn')
+const PROFILE_BTN = document.querySelector('#profile-btn');
+const DROPDOWNFILTER = document.querySelectorAll('.dropDown_filter');
+let movieType='now_playing';
 
 // Don't touch this function please
 // This function fetches the now playing movies and then render them by using the function renderMovies
 let genreBTN = document.querySelector('#genre');
 let filterBTN = document.querySelector('#filter');
-let genreList = document.querySelector('#genreList');
-let filterList = document.querySelector('#filterList');
 let homeBtn = document.querySelector('#home');
 
+const toggle = (e)=>{
+  let list=e.target.nextElementSibling;
+  list.classList.toggle('displayList')
 
-genreBTN.addEventListener('click' , function(e) {
-    genreList.classList.toggle('displayList')
-    
-})
-filterBTN.addEventListener('click' , function(e) {
-    filterList.classList.toggle('displayList')
-})
-const autorun = async () => {
+}
 
-  const movies = await fetchMovies();
+const autorun = async (filter="now_playing") => {
+  const movies = await fetchMovies(filter);
   CONTAINER.innerHTML = `<div class="search-box">
   <input type="text" id="searchBar" placeholder="Search">
   <a href="#" class="search-Btn"> <i class="fas fa-search"></i></a>
@@ -33,9 +30,7 @@ const autorun = async () => {
 };
 
 PROFILE_BTN.addEventListener('click', async () => {
-  console.log('Im Here')
-  const movies = await fetchMovies();
-  console.log(movies);
+  const movies = await fetchMovies(movieType);
   fetchProfiles(movies.results);
   })
 
@@ -46,17 +41,16 @@ const fetchProfiles = async (movies)=>{
 </div>`
   for(let movie of movies){
   const credit = await fetchMovie(movie.id+"/credits")
-  console.log(credit);
   renderProfiles(credit);}
     
 }
 
 const renderProfiles = (credit) => {
-  for(let i = 0; i < credit.cast.length; i++){
+  for(let i = 0; i < 8; i++){
       let cast = credit.cast[i];
       let div = document.createElement('div');
       div.setAttribute('class' , 'actors')
-      div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px  class ="movieImg"/><h3>${cast.name}</h3>`
+      div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px  class ="movieImg"/><h3  class="movieList-heading">${cast.name}</h3>`
      CONTAINER.appendChild(div) 
     }
 
@@ -78,14 +72,13 @@ const constructUrl = (path) => {
 const movieDetails = async (movie) => {
   const movieRes = await fetchMovie(movie.id);
   const movieCredits = await fetchMovie(movie.id+"/credits");
-  console.log(movieRes);
   renderMovie(movieRes,movieCredits);
 };
 
 // This function is to fetch movies. You may need to add it or change some part in it in order to apply some of the features.
 //this function fetch the now_playing movies
-const fetchMovies = async () => {
-  const url = constructUrl(`movie/now_playing`);
+const fetchMovies = async (filter) => {
+  const url = constructUrl(`movie/${filter}`);
   const res = await fetch(url);
   return res.json();
 };
@@ -107,7 +100,7 @@ const renderMovies = (movies) => {
         <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
       movie.title
     } poster" class = "movieImg">
-        <h3>${movie.title}</h3>`;
+        <h3 class="movieList-heading">${movie.title}</h3>`;
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
@@ -142,12 +135,28 @@ const renderMovie = (movie,credit) => {
       let cast = credit.cast[i];
       let actors = document.querySelector('#actors');
       let li = document.createElement('li');
-      li.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px/>${cast.name} `
+      li.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px class="movieImg"/><h3>${cast.name}<h3>`
       actors.appendChild(li);
       
     }
 };
-homeBtn.addEventListener('click' ,autorun);
-document.addEventListener("DOMContentLoaded", autorun);
+for(let filter of DROPDOWNFILTER){
+  filter.addEventListener('click', async (e) => {
+    movieType=e.target.id;
+    autorun(e.target.id);
+  })
+}
+homeBtn.addEventListener('click' , async (e)=>{
+  autorun();
+});
+document.addEventListener("DOMContentLoaded", autorun());
+
+genreBTN.addEventListener('click' , function(e) {
+  toggle(e);
+    
+})
+filterBTN.addEventListener('click' , function(e) { 
+  toggle(e);
+})
 
 	

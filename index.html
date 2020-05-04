@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+    <title>MovieApp</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -15,10 +15,9 @@
         <div class="nav_items">
             <a href="#" id="genre"> Genre </a>
             <ul class="dropDown" id="genreList">
-                <li class="dropDown__items">Comdy</li>
-                <li class="dropDown__items">action</li>
-                <li class="dropDown__items">sci-fi</li>
-                <li class="dropDown__items">drama</li>
+                <li class="dropDown__items dropDown_genre">action</li>
+                <li class="dropDown__items dropDown_genre">sci-fi</li>
+                <li class="dropDown__items dropDown_genre">drama</li>
             </ul>
         </div>
 
@@ -29,11 +28,11 @@
         <div class="nav_items">
             <a href="#" id="filter"> filter </a>
             <ul class="dropDown" id="filterList">
-                <li class="dropDown__items">popular</li>
-                <li class="dropDown__items">top rated</li>
-                <li class="dropDown__items">releas-date</li>
-                <li class="dropDown__items">now playing</li>
-                <li class="dropDown__items">upcoming</li>
+                <li class="dropDown__items dropDown_filter" id="popular">Popular</li>
+                <li class="dropDown__items dropDown_filter" id="top_rated">Top rated</li>
+                <li class="dropDown__items dropDown_filter" id="realse_date">releas-date</li>
+                <li class="dropDown__items dropDown_filter" id="now_playing">Now Playing</li>
+                <li class="dropDown__items dropDown_filter" id="upcoming">upcoming</li>
             </ul>
         </div>
     </nav>
