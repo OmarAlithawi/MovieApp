@@ -56,7 +56,6 @@ const renderProfiles = (credit) => {
 
 }
 
-
 //https://api.themoviedb.org/3/movie/15054/credits?api_key=542003918769df50083a13c415bbc602&append_to_response=credits
 
 // Don't touch this function please
@@ -74,6 +73,7 @@ const movieDetails = async (movie) => {
   const movieCredits = await fetchMovie(movie.id+"/credits");
   renderMovie(movieRes,movieCredits);
 };
+console.log(constructUrl('movie/all'));
 
 // This function is to fetch movies. You may need to add it or change some part in it in order to apply some of the features.
 //this function fetch the now_playing movies
