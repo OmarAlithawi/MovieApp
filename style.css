@@ -77,6 +77,7 @@ body .nav_items .displayList{
 /**********************************/
 
 .container{
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3 , 1fr);
     flex: 0 0 75%;
@@ -131,6 +132,7 @@ body .nav_items .displayList{
     align-self: center;
     position: relative;
     right: 4rem;
+    z-index: 13;
     font-size: 2rem;
 }
 
@@ -178,7 +180,6 @@ body .nav_items .displayList{
     width: 100%;
     object-fit: cover;
     height: 100vh;
-    position: relative;
 }
 
 .movie-poster::after{
@@ -216,6 +217,7 @@ body .nav_items .displayList{
 .details h3{
     font-size: 3rem;
 }
+
 .movieCard{
     grid-column: 1/2;
     grid-row: 1/4;
@@ -224,6 +226,22 @@ body .nav_items .displayList{
     position: relative;
     left: 6rem;
     top: 4rem;
+    display: none;
+}
+
+.movie-trailer{
+    grid-column: 1/2;
+    grid-row: 1/4;
+    top: 15rem;
+    left: 3rem;
+    z-index: 15;
+    position: relative;
+    width: 350px;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 2rem;
+    
+
 }
 
 #actors{
