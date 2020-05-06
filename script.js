@@ -99,6 +99,7 @@ const fetchProfiles = async (movies)=>{
 ////////////////////////RENDERING FUNCTIONS//////////////////////////
 
 const renderProfiles = (credit) => {
+  row.classList.add("row");
   for(let i = 0; i < 8; i++){
       let cast = credit.cast[i];
       let div = document.createElement('div');
@@ -135,6 +136,7 @@ const renderMovies = (movies) => {
 };
 
 const renderMovie = (movie,credit,videos) => {
+  console.log(videos.length);
   row.classList.remove("row");
   CONTAINER.innerHTML = 
     `
@@ -163,7 +165,7 @@ const renderMovie = (movie,credit,videos) => {
     } poster" class = "movieImg">
         <h3 class="movieList-Heading">${movie.title}</h3>
         </div>
-        <iframe class="movie-trailer" src="https://www.youtube.com/embed/${videos[0].key}" 
+        <iframe class="movie-trailer" src="https://www.youtube.com/embed/${videos.length === 0 ? videos.key:videos[0].key}" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
          allowfullscreen></iframe>`
     
