@@ -47,7 +47,7 @@ const autorun = async (filter="now_playing") => {
 const movieDetails = async (movie) => {
   const movieRes = await fetchMovie(movie.id);
   const movieCredits = await fetchMovie(movie.id+"/credits");
-  const movieTrailer = await fetchMovie(movie.id+"/videos")
+  const movieTrailer = await fetchMovie(movie.id+"/videos");
   renderMovie(movieRes,movieCredits,movieTrailer.results);
 };
 
@@ -131,7 +131,7 @@ const renderMovies = (movies) => {
         <h3 class="movieList-Heading">${movie.title}</h3>
         <div class="hover-more-detials">
         <h4>${movie.release_date}</h4>
-        <h4>${movie.release_date}</h4>
+        <h4>${movie.vote_average} / 10 <i class="fas fa-star"></i></h4>
         </div>`
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
@@ -222,9 +222,13 @@ PROFILE_BTN.addEventListener('click', async () => {
   })
 
 //1- WE NEED TO ADD THE SINGLE ACTOR PAGE
-//2- TRAILER FOR THE FUCKEN MOVIES
-//3- HOVER EFFECT ON THE MOVIES
+//2- TRAILER FOR THE FUCKEN MOVIES ///done
+//3- about us section 
+//3- HOVER EFFECT ON THE MOVIES  /// done 
 //4- HEADING TO SHOW WHICH PAGE THE USER IS ON
 //
+
+
+//hover effect on the actors page / movies list / movie page + rating
 
 
