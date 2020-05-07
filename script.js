@@ -133,7 +133,7 @@ const renderMovies = (movies) => {
         <h3 class="movieList-Heading">${movie.title}</h3>
         <div class="hover-more-detials">
         <h4>${movie.release_date}</h4>
-        <h4>${movie.release_date}</h4>
+        <h4>${movie.vote_average} / 10 <i class="fas fa-star"></i></h4>
         </div>`
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
@@ -250,4 +250,7 @@ PROFILE_BTN.addEventListener('click', async () => {
 //7- related movies design should be finished 
 //8- fix the multi search
 //9- anitmation to nav bar
+
+//hover effect on the actors page / movies list / movie page + rating
+
 

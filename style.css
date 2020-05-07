@@ -1,3 +1,6 @@
+
+/****************************** 1- Base*********************************/
+
 *{
     margin: 0;
     padding: 0;
@@ -15,6 +18,19 @@ body{
     width: 100%;
     background-color: rgb(216, 224, 231);
 }
+
+.row{
+    max-width: 110rem;
+    margin: 0 auto;
+    
+}
+
+::-webkit-scrollbar{
+    background-color: transparent;
+}
+
+
+/****************************** 2- SideNav*********************************/
 
 nav{
     flex: 0 0 20%;
@@ -36,6 +52,8 @@ nav a{
     border-radius: 2rem;
     text-transform: capitalize;
     font-size: 1.8rem;
+    z-index: 15;
+    transition: color .9s ease;
 }
 
 .nav_items{
@@ -44,6 +62,31 @@ nav a{
     flex-direction: column;
     align-items: center;
     position: relative;
+}
+
+nav .nav_items a::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4.1rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    z-index: -1;
+    transition: width .9s ease;
+
+}
+
+nav  a:hover::before{
+    width: 24.5rem;
+    transition: width .9s ease;
+    
+}
+
+nav a:hover{
+color: black;
+transition: color .9s ease;
 }
 
 .nav_items ul{
@@ -67,11 +110,11 @@ nav a{
    position: relative;
    z-index: 15;
    cursor: pointer;
+   transition: color .9s ease;
 }
 
 
 .nav_items ul li::after{
-
     content: "";
     position: absolute;
     top: 0;
@@ -81,6 +124,7 @@ nav a{
     border-radius: 2rem;
     background-color: #fff;
     z-index: -1;
+    transition: width .9s ease;
 }
 
 
@@ -88,13 +132,13 @@ nav a{
 
 .nav_items ul li:hover{
     color: #000;
-    transition: all .9s ease;
+    transition: color .9s ease;
 }
 
 
  .nav_items ul li:hover::after{
     width: 17.3rem;
-    transition: all .9s ease;
+    transition: width .9s ease;
     
 }
 
@@ -107,7 +151,7 @@ body .nav_items .displayList{
 }
 
 
-/**********************************/
+/****************************** 3- Container*********************************/
 
 .container{
     position: relative;
@@ -121,6 +165,32 @@ body .nav_items .displayList{
    
 }
 
+/****************************** 4- Movies List*********************************/
+.movieList{
+    display: flex;
+    flex-direction: column;
+    transition: all .3s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.movieList-Heading{
+    color: #272838;
+    text-align: center;
+    padding: 2.5rem;
+    position: relative;
+    bottom: 7rem;
+    background-color: white;
+    height: 7rem;
+    border-bottom-left-radius:2rem ;
+    border-bottom-right-radius: 2rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 15;
+}
+
+
+
 .movieImg{
     width: 100%;
     object-fit: cover;
@@ -130,12 +200,53 @@ body .nav_items .displayList{
     box-shadow: -5px -2px 9px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.row{
-    max-width: 110rem;
-    margin: 0 auto;
+
+.hover-more-detials{
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 5px 5px 12px rgba(0,0,0,.25);
+    text-align: center;
+    visibility: hidden;
     
 }
 
+.hover-more-detials h4{
+    font-weight: 700;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+h4 .fas{
+    margin-left: 1rem;
+}
+
+.movieList:hover{
+    transform: translateY(-1rem);
+    transition: all .3s ease;
+}
+.movieList:hover .movieImg{
+    filter: blur(.4rem) contrast(70%) ;
+    transition: all .3s ease;
+}
+
+
+.movieList:hover .hover-more-detials{
+    bottom: 60%;
+    z-index: 13;
+    transition: all .9s ease;
+    visibility: visible;
+}
+
+
+/****************************** 5- Search Box*********************************/
 .search-box{
     grid-row: 1/4;
     grid-column: 1/4;
@@ -144,6 +255,7 @@ body .nav_items .displayList{
     display: flex;
     
 }
+
 #searchBar{
     grid-row: 1/4;
     grid-column: 1/4;
@@ -169,19 +281,6 @@ body .nav_items .displayList{
     font-size: 2rem;
 }
 
-.movieList-Heading{
-    color: #272838;
-    text-align: center;
-    padding: 2.5rem;
-    position: relative;
-    bottom: 7rem;
-    background-color: white;
-    height: 7rem;
-    border-bottom-left-radius:2rem ;
-    border-bottom-right-radius: 2rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
 
 #searchBar:focus{
     border: .2rem solid blue;
@@ -191,39 +290,10 @@ body .nav_items .displayList{
     outline: none;
 }
 
-::-webkit-scrollbar{
-    background-color: transparent;
-}
 
 
-.movieList{
-    display: flex;
-    flex-direction: column;
-    transition: all .3s ease;
-    position: relative;
-    cursor: pointer;
-}
+/****************************** 6- single movie page*********************************/
 
-.hover-more-detials{
-    position: absolute;
-    bottom: 25%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: -1;
-    font-size: 2rem;
-    color: white;
-}
-
-.movieList:hover{
-    transform: translateY(-1rem);
-    transition: all .3s ease;
-}
-
-.movieList:hover .hover-more-detials{
-    bottom: 60%;
-    z-index: 15;
-    transition: all .9s ease;
-}
 
 .movie-poster{
     grid-column: 1/6;
@@ -269,21 +339,20 @@ body .nav_items .displayList{
     font-size: 3rem;
 }
 
-.movie-trailer{
-    grid-column: 1/2;
-    grid-row: 1/4;
-    z-index: 15;
+
+
+/****************************** 7- single movie page Actors*********************************/
+
+.castHeading{
+    grid-column: 2/5;
+    grid-row: 3/6;
+    z-index: 11;
     align-self: center;
     justify-content: center;
-    width: 35rem;
-    height: 27rem;
-    border: 2px solid white;
-    border-radius: 2rem;
-    position: relative;
-    left: 6rem;
-    box-shadow: -5px -2px 9px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
+    color: white;
+    font-size: 1.8rem;
 }
+
 
 #actors{
     display: flex;
@@ -294,15 +363,29 @@ body .nav_items .displayList{
     align-self: center;
     justify-content: space-evenly;
     color: white;
+    text-align: center;
+    cursor: pointer;
 }
 
 #actors img{
     width: 6rem;
     border-radius: .6rem;
+    transition: transform .5s ease;
+}
+
+#actors img:hover{
+    transform: scale(1.1);
+    transition: transform .5s ease;
+}
+
+#actors img:hover + h3{
+    transform: translateY(.5rem) scale(.9);
+    transition: transform .5s ease;
 }
 
 #actors h3{
     text-align: center;
+    transition: transform .5s ease;
 }
 
 #similar{
@@ -329,11 +412,34 @@ body .nav_items .displayList{
 .castHeading{
     grid-column: 2/5;
     grid-row: 3/6;
-    z-index: 11;
+    z-index: 11;}
+
+/****************************** 8- Movie Trailer*********************************/
+
+.movie-trailer{
+    grid-column: 1/2;
+    grid-row: 1/4;
+    z-index: 15;
     align-self: center;
     justify-content: center;
-    color: white;
-    font-size: 1.8rem;
+    width: 35rem;
+    height: 27rem;
+    border: 2px solid white;
+    border-radius: 2rem;
+    position: relative;
+    left: 6rem;
+    box-shadow: -5px -2px 9px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
 }
 
+/****************************** 9- Actors page*********************************/
 
+.actors{
+    transition: all .3s ease;
+
+}
+
+.actors:hover{
+    transform: translateY(-1rem);
+    transition: all .3s ease;
+}
