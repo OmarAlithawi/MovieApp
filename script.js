@@ -45,6 +45,7 @@ const autorun = async (filter="now_playing") => {
 };
 
 const movieDetails = async (movie) => {
+  console.log(movie.id);
   const movieRes = await fetchMovie(movie.id);
   const movieCredits = await fetchMovie(movie.id+"/credits");
   const movieTrailer = await fetchMovie(movie.id+"/videos");
@@ -62,6 +63,7 @@ const fetchMovies = async (filter) => {
 
 const fetchMovie = async (movieId) => {
   const url = constructUrl(`movie/${movieId}`);
+  console.log(url)
   const res = await fetch(url);
   return res.json();
 };
@@ -105,7 +107,6 @@ const renderProfiles = (credit) => {
       let cast = credit.cast[i];
       let div = document.createElement('div');
       div.setAttribute('class' , 'actors')
-      console.log(cast.id);
       div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px  class ="movieImg"/><h3 class = "movieList-Heading">${cast.name}</h3>`;
      CONTAINER.appendChild(div) 
     }
@@ -129,7 +130,11 @@ const renderMovies = (movies) => {
         <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
       movie.title
     } poster" class = "movieImg">
-        <h3 class="movieList-Heading">${movie.title}</h3>`;
+        <h3 class="movieList-Heading">${movie.title}</h3>
+        <div class="hover-more-detials">
+        <h4>${movie.release_date}</h4>
+        <h4>${movie.release_date}</h4>
+        </div>`
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
@@ -241,3 +246,8 @@ PROFILE_BTN.addEventListener('click', async () => {
 //3- HOVER EFFECT ON THE MOVIES 
 //4- HEADING TO SHOW WHICH PAGE THE USER IS ON 
 //5- RELATED MOVIES TO THE MOVIE PAGE
+//6- Pictures of actors inside single movie paged should be centerd
+//7- related movies design should be finished 
+//8- fix the multi search
+//9- anitmation to nav bar
+
