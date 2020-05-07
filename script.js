@@ -61,6 +61,7 @@ const fetchMovies = async (filter) => {
 
 const fetchMovie = async (movieId) => {
   const url = constructUrl(`movie/${movieId}`);
+  console.log(url)
   const res = await fetch(url);
   return res.json();
 };
@@ -127,7 +128,11 @@ const renderMovies = (movies) => {
         <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
       movie.title
     } poster" class = "movieImg">
-        <h3 class="movieList-Heading">${movie.title}</h3>`;
+        <h3 class="movieList-Heading">${movie.title}</h3>
+        <div class="hover-more-detials">
+        <h4>${movie.release_date}</h4>
+        <h4>${movie.release_date}</h4>
+        </div>`
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
@@ -158,13 +163,7 @@ const renderMovie = (movie,credit,videos) => {
             <h3 class= "castHeading">Cast:</h3>
             <ul id="actors" class="list-unstyled">
             </ul>
-        <div class="movieCard">
         
-        <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
-      movie.title
-    } poster" class = "movieImg">
-        <h3 class="movieList-Heading">${movie.title}</h3>
-        </div>
         <iframe class="movie-trailer" src="https://www.youtube.com/embed/${videos.length === 0 ? videos.key:videos[0].key}" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
          allowfullscreen></iframe>`
@@ -227,3 +226,5 @@ PROFILE_BTN.addEventListener('click', async () => {
 //3- HOVER EFFECT ON THE MOVIES
 //4- HEADING TO SHOW WHICH PAGE THE USER IS ON
 //
+
+
