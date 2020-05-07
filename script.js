@@ -47,8 +47,9 @@ const autorun = async (filter="now_playing") => {
 const movieDetails = async (movie) => {
   const movieRes = await fetchMovie(movie.id);
   const movieCredits = await fetchMovie(movie.id+"/credits");
-  const movieTrailer = await fetchMovie(movie.id+"/videos")
-  renderMovie(movieRes,movieCredits,movieTrailer.results);
+  const movieTrailer = await fetchMovie(movie.id+"/videos");
+  const movieSimilar = await fetchMovie(movie.id+"/similar");
+  renderMovie(movieRes,movieCredits,movieTrailer.results,movieSimilar.results);
 };
 
 //////////////////Fetching Functions///////////////////
@@ -136,7 +137,7 @@ const renderMovies = (movies) => {
   });
 };
 
-const renderMovie = (movie,credit,videos) => {
+const renderMovie = (movie,credit,videos,similar) => {
   console.log(videos.length);
   row.classList.remove("row");
   CONTAINER.innerHTML = 
@@ -159,13 +160,8 @@ const renderMovie = (movie,credit,videos) => {
             <h3 class= "castHeading">Cast:</h3>
             <ul id="actors" class="list-unstyled">
             </ul>
-        <div class="movieCard">
-        
-        <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
-      movie.title
-    } poster" class = "movieImg">
-        <h3 class="movieList-Heading">${movie.title}</h3>
-        </div>
+            <ul id="similar" class="list-unstyled">
+            </ul>
         <iframe class="movie-trailer" src="https://www.youtube.com/embed/${videos.length === 0 ? videos.key:videos[0].key}" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
          allowfullscreen></iframe>`
@@ -178,6 +174,23 @@ const renderMovie = (movie,credit,videos) => {
       `
       actors.appendChild(div);
       
+    }
+    for (let j = 0 ; j < 5 ; j++){
+      console.log(j)
+      let movie = similar[j];
+      let similarMovie = document.querySelector('#similar');
+      let movieDiv = document.createElement('div');
+      movieDiv.classList.add('movieList');
+      movieDiv.innerHTML=`<img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
+        movie.title
+      } poster" class = "movieImg">
+          <h3>${movie.title}</h3> class="movieList-Heading"`;
+      movieDiv.addEventListener("click", () => {
+      movieDetails(movie);
+      });
+      similarMovie.appendChild(movieDiv);
+      
+
     }
 };
 
@@ -224,7 +237,7 @@ PROFILE_BTN.addEventListener('click', async () => {
   })
 
 //1- WE NEED TO ADD THE SINGLE ACTOR PAGE
-//2- TRAILER FOR THE FUCKEN MOVIES
-//3- HOVER EFFECT ON THE MOVIES
-//4- HEADING TO SHOW WHICH PAGE THE USER IS ON
-//
+//2- TRAILER FOR THE FUCKEN MOVIES DONE
+//3- HOVER EFFECT ON THE MOVIES 
+//4- HEADING TO SHOW WHICH PAGE THE USER IS ON 
+//5- RELATED MOVIES TO THE MOVIE PAGE
