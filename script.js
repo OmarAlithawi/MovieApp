@@ -169,7 +169,10 @@ const renderProfiles = (credit) => {
       let div = document.createElement('div');
       div.setAttribute('class' , 'actors')
       div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px  class ="movieImg"/><h3 class = "movieList-Heading">${cast.name}</h3>`;
-     CONTAINER.appendChild(div) 
+     CONTAINER.appendChild(div)
+     div.addEventListener('click', (e)=>{
+      presonDetails(cast.id);
+    })
     }
 
 }
@@ -315,16 +318,10 @@ PROFILE_BTN.addEventListener('click', async () => {
   fetchProfiles(movies.results);
   })
 
-//1- WE NEED TO ADD THE SINGLE ACTOR PAGE
-//2- TRAILER FOR THE FUCKEN MOVIES DONE
-//3- HOVER EFFECT ON THE MOVIES 
-//4- HEADING TO SHOW WHICH PAGE THE USER IS ON 
-//5- RELATED MOVIES TO THE MOVIE PAGE
-//6- Pictures of actors inside single movie paged should be centerd
-//7- related movies design should be finished 
-//8- fix the multi search
-//9- anitmation to nav bar
 
-//hover effect on the actors page / movies list / movie page + rating
+//1- HEADING TO SHOW WHICH PAGE THE USER IS ON 
+//2- related movies design should be finished 
+//3- fix the multi search STILL
+//4- known for movies design to be finished
 
 
