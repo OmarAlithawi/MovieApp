@@ -36,16 +36,26 @@ const constructGenre = (path, genreId) =>{
   return `${TMDB_BASE_URL}/${path}?api_key=542003918769df50083a13c415bbc602&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${genreId}`
 }
 
+const constructPerson = (personId) => {
+  return`${TMDB_BASE_URL}/person/${personId}?api_key=${atob(
+    "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
+  )}`;
+}
+
+const constructKnown = (personId) => {
+  return`${TMDB_BASE_URL}/person/${personId}/movie_credits?api_key=${atob(
+    "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
+  )}`;
+}
+
 ////////////////////////////Initialization////////////////////////
 
 const autorun = async (filter="now_playing") => {
   const movies = await fetchMovies(filter);
-  console.log(movies);
   renderMovies(movies.results);
 };
 
 const movieDetails = async (movie) => {
-  console.log(movie.id);
   const movieRes = await fetchMovie(movie.id);
   const movieCredits = await fetchMovie(movie.id+"/credits");
   const movieTrailer = await fetchMovie(movie.id+"/videos");
@@ -53,7 +63,25 @@ const movieDetails = async (movie) => {
   renderMovie(movieRes,movieCredits,movieTrailer.results,movieSimilar.results);
 };
 
+const presonDetails = async (personId) =>{
+  const person = await fetchPerson(personId);
+  const knownFor = await fetchKnown(personId);
+  renderPerson(person,knownFor.cast);
+}
+
 //////////////////Fetching Functions///////////////////
+
+const fetchPerson = async (personId) =>{
+const url = constructPerson(personId);
+const res = await fetch(url);
+return res.json();
+}
+
+const fetchKnown = async (personId) =>{
+  const url = constructKnown(personId);
+  const res = await fetch(url);
+  return res.json();
+}
 
 const fetchMovies = async (filter) => {
   const url = constructUrl(`movie/${filter}`);
@@ -63,7 +91,6 @@ const fetchMovies = async (filter) => {
 
 const fetchMovie = async (movieId) => {
   const url = constructUrl(`movie/${movieId}`);
-  console.log(url)
   const res = await fetch(url);
   return res.json();
 };
@@ -89,7 +116,6 @@ const fetchProfiles = async (movies)=>{
     searchBtn.addEventListener('click', async (e)=>{
       const search = await fetchSearch(searchBar.value);
       renderMovies(search.results);
-      console.log(searchBar.value);
     })
   for(let movie of movies){
   const credit = await fetchMovie(movie.id+"/credits")
@@ -101,6 +127,41 @@ const fetchProfiles = async (movies)=>{
 
 ////////////////////////RENDERING FUNCTIONS//////////////////////////
 
+const renderPerson = (person,knownFor) =>{
+  row.classList.add('row');
+  CONTAINER.innerHTML =`
+  
+    <div id="actor-card">
+        <img src="${PROFILE_BASE_URL + person.profile_path}"class ="movieImg" alt="person">
+        <h3 id="actor-name" class ="movieList-Heading">${person.name}</h3>
+    </div>
+    <div id="actor-details">
+        <p><b>Actor popularity :</b> ${person.popularity}</p>
+        <p><b>Born :</b> ${person.birthday}</p>
+        <p><b>Gender :</b> ${person.gender === 1 ? "Female":"Male"}</p>
+        <p><b>Biography :</b> ${person.biography}</p>
+    </div>
+</div>
+<ul id="actors">
+</ul>
+`
+for(let i = 0; i < 5; i++){
+  let movie = knownFor[i];
+  console.log(movie.id);
+  let actors = document.querySelector('#actors');
+  let div = document.createElement('div');
+  div.innerHTML=`<img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
+    movie.title
+  } poster" width="48px" heigth="68px">
+      <h3>${movie.title}</h3>`
+  div.addEventListener('click', (e)=>{
+    movieDetails(movie);
+  })
+  actors.appendChild(div);
+}
+
+}
+
 const renderProfiles = (credit) => {
   row.classList.add("row");
   for(let i = 0; i < 8; i++){
@@ -108,7 +169,10 @@ const renderProfiles = (credit) => {
       let div = document.createElement('div');
       div.setAttribute('class' , 'actors')
       div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px  class ="movieImg"/><h3 class = "movieList-Heading">${cast.name}</h3>`;
-     CONTAINER.appendChild(div) 
+     CONTAINER.appendChild(div)
+     div.addEventListener('click', (e)=>{
+      presonDetails(cast.id);
+    })
     }
 
 }
@@ -120,7 +184,6 @@ const renderMovies = (movies) => {
     searchBtn.addEventListener('click', async (e)=>{
       const search = await fetchSearch(searchBar.value);
       renderMovies(search.results);
-      console.log(searchBar.value);
     })
   row.classList.add('row');
   movies.map((movie) => {
@@ -143,7 +206,10 @@ const renderMovies = (movies) => {
 };
 
 const renderMovie = (movie,credit,videos,similar) => {
-  console.log(videos.length);
+  console.log(credit.crew);
+  const director = credit.crew.find((credit)=>{
+    return credit.job === "Director"
+  });
   row.classList.remove("row");
   CONTAINER.innerHTML = 
     `
@@ -154,13 +220,23 @@ const renderMovie = (movie,credit,videos,similar) => {
         </div>
         <div class="details">
             <h2 id="movie-title">${movie.title}</h2>
-            <p id="movie-release-date"><b>Release Date:</b> ${
+            <p id="movie-release-date"><b>Release Date :</b> ${
               movie.release_date
             }</p>
+            <p><b>Movie Language :</b> ${movie.original_language.toUpperCase()}</p>
+            <p><b>Rating :</b> &nbsp${movie.vote_average} <i class="fas fa-star"></i>&nbsp&nbsp
+            <b>Vote Count : </b>${movie.vote_count} </p>
             <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
-            <h3>Overview:</h3>
-            <p id="movie-overview">${movie.overview}</p>
+            <h3>Overview :</h3>
+            <p id="movie-overview">${movie.overview} </p>
+            <h3 id="director"><b>Directed By : </b><a href="https://en.wikipedia.org/wiki/${director.name.replace(' ',"_")}" target="_blank">${director.name}</a></h3>
         </div>
+        
+        
+        <h3>Produced By<h3>
+        <div>
+            <h4>${movie.production_companies[0].name}</h4>
+            <img src=${PROFILE_BASE_URL + movie.production_companies[0].logo_path} width="50px">
         </div>
             <h3 class= "castHeading">Cast:</h3>
             <ul id="actors" class="list-unstyled">
@@ -177,11 +253,13 @@ const renderMovie = (movie,credit,videos,similar) => {
       let div = document.createElement('div');
       div.innerHTML=`<img src="${PROFILE_BASE_URL + cast.profile_path}" width=48px/> <h3>${cast.name}</h3>
       `
+      div.addEventListener('click', (e)=>{
+        presonDetails(cast.id);
+      })
       actors.appendChild(div);
-      
     }
+
     for (let j = 0 ; j < 5 ; j++){
-      console.log(j)
       let movie = similar[j];
       let similarMovie = document.querySelector('#similar');
       let movieDiv = document.createElement('div');
@@ -211,7 +289,6 @@ const toggle = (e)=>{
 for(let filter of DROPDOWNFILTER){
   filter.addEventListener('click', async (e) => {
     movieType=e.target.id;
-    console.log(e.target.id);
     autorun(e.target.id);
   })
 }
@@ -241,16 +318,10 @@ PROFILE_BTN.addEventListener('click', async () => {
   fetchProfiles(movies.results);
   })
 
-//1- WE NEED TO ADD THE SINGLE ACTOR PAGE
-//2- TRAILER FOR THE FUCKEN MOVIES DONE
-//3- HOVER EFFECT ON THE MOVIES 
-//4- HEADING TO SHOW WHICH PAGE THE USER IS ON 
-//5- RELATED MOVIES TO THE MOVIE PAGE
-//6- Pictures of actors inside single movie paged should be centerd
-//7- related movies design should be finished 
-//8- fix the multi search
-//9- anitmation to nav bar
 
-//hover effect on the actors page / movies list / movie page + rating
+//1- HEADING TO SHOW WHICH PAGE THE USER IS ON 
+//2- related movies design should be finished 
+//3- fix the multi search STILL
+//4- known for movies design to be finished
 
 

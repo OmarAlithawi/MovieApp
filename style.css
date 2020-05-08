@@ -326,13 +326,41 @@ h4 .fas{
     
 }
 
+.details a{
+    color: #fff;
+    text-decoration: none;
+    border-width: 0;
+    position: relative;
+}
+
+.details a::after{
+    content: "";
+    position: absolute;
+    width: 0rem;
+    background-color: black;
+    height: 0.5rem;
+    bottom: -0.6rem;
+    border-radius: 0.3rem;
+    left: 0;
+    z-index: -1;
+}
+
+.details a:hover::after{
+   width: 18.5rem;
+   transition: width 0.4s ease-in;
+}
+
+#director{
+    margin-top: 2rem;
+}
+
 .details h2{
     font-size: 3rem;
 }
 
 .details p{
     font-size: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 }
 
 .details h3{
@@ -443,3 +471,30 @@ h4 .fas{
     transform: translateY(-1rem);
     transition: all .3s ease;
 }
+
+/****************************** 10- Actor page*********************************/
+
+#actor-card{
+    grid-column: 1/2;
+    grid-row: 1/4;
+    align-self: center;
+    position: relative;
+    top: 4rem;
+}
+
+#actor-card img,#actor-card h3{
+    cursor: inherit;
+}
+
+#actor-details{
+    grid-column: 2/4;
+    grid-row: 1/4;
+    align-self: center;
+}
+
+#actor-details p {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}
+
+
