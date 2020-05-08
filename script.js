@@ -147,7 +147,6 @@ const renderPerson = (person,knownFor) =>{
 `
 for(let i = 0; i < 5; i++){
   let movie = knownFor[i];
-  console.log(movie.id);
   let actors = document.querySelector('#actors');
   let div = document.createElement('div');
   div.innerHTML=`<img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
@@ -206,7 +205,6 @@ const renderMovies = (movies) => {
 };
 
 const renderMovie = (movie,credit,videos,similar) => {
-  console.log(credit.crew);
   const director = credit.crew.find((credit)=>{
     return credit.job === "Director"
   });
@@ -233,10 +231,8 @@ const renderMovie = (movie,credit,videos,similar) => {
         </div>
         
         
-        <h3>Produced By<h3>
-        <div>
-            <h4>${movie.production_companies[0].name}</h4>
-            <img src=${PROFILE_BASE_URL + movie.production_companies[0].logo_path} width="50px">
+        <h3 id="produced-by-header">Produced By<h3>
+        <div id="produced-by">
         </div>
             <h3 class= "castHeading">Cast:</h3>
             <ul id="actors" class="list-unstyled">
@@ -245,9 +241,9 @@ const renderMovie = (movie,credit,videos,similar) => {
             </ul>
         <iframe class="movie-trailer" src="https://www.youtube.com/embed/${videos.length === 0 ? videos.key:videos[0].key}" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-         allowfullscreen></iframe>`
-    
-    for(let i = 0; i < 5; i++){
+         allowfullscreen></iframe>`;
+
+  for(let i = 0; i < 5; i++){
       let cast = credit.cast[i];
       let actors = document.querySelector('#actors');
       let div = document.createElement('div');
@@ -258,8 +254,8 @@ const renderMovie = (movie,credit,videos,similar) => {
       })
       actors.appendChild(div);
     }
-
-    for (let j = 0 ; j < 5 ; j++){
+    if(typeof similar[0] === 'object'){
+    for (let j = 0 ; j < 5 && j < similar.length ; j++){
       let movie = similar[j];
       let similarMovie = document.querySelector('#similar');
       let movieDiv = document.createElement('div');
@@ -272,9 +268,22 @@ const renderMovie = (movie,credit,videos,similar) => {
       movieDetails(movie);
       });
       similarMovie.appendChild(movieDiv);
+      }}
       
+    if(typeof movie.production_companies[0] === 'object'){
+      const productionName = document.createElement('h4');
+      const productionPicture = document.createElement('img');
+      productionPicture.setAttribute('src', PROFILE_BASE_URL + movie.production_companies[0].logo_path);
+      productionPicture.setAttribute('width', '50px')
+      productionName.innerHTML = movie.production_companies[0].name;
+      const productionDiv = document.querySelector('#produced-by');
+      productionDiv.appendChild(productionName);
+      productionDiv.appendChild(productionPicture);
+  }else{
+      document.querySelector('#produced-by-header').style.display = "none";
+      document.querySelector('#produced-by').style.display = "none";
 
-    }
+  }
 };
 
 ///////////////////////NEEDED FUNCTIONS//////////////////////////
