@@ -1,0 +1,12 @@
+.container{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    flex: 0 0 75%;
+    grid-gap: 2rem;
+    grid-column-gap: 5rem;
+    height: auto;
+    /* overflow: scroll; */
+    overflow-x: hidden;
+   
+}

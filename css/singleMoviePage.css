@@ -1,0 +1,72 @@
+.movie-poster{
+    grid-column: 1/6;
+    grid-row: 1/5;
+    width: 100%;
+    object-fit: cover;
+    height: 100vh;
+}
+
+.movie-poster::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(39, 40, 56, 0.49);
+    width: 100%;
+    height: 100vh;
+    z-index: 11;
+}
+
+.details{
+    grid-column: 2/4;
+    grid-row: 1/4;
+    z-index: 13;
+    align-self: center;
+    position: relative;
+    left: 6rem;
+    color: white;
+    
+    
+}
+
+.details a{
+    color: #fff;
+    text-decoration: none;
+    border-width: 0;
+    position: relative;
+}
+
+.details a::after{
+    content: "";
+    position: absolute;
+    width: 0rem;
+    background-color: black;
+    height: 0.5rem;
+    bottom: -0.6rem;
+    border-radius: 0.3rem;
+    left: 0;
+    z-index: -1;
+}
+
+.details a:hover::after{
+   width: 18.5rem;
+   transition: width 0.4s ease-in;
+}
+
+#director{
+    margin-top: 2rem;
+}
+
+.details h2{
+    font-size: 3rem;
+}
+
+.details p{
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.details h3{
+    font-size: 3rem;
+}
+

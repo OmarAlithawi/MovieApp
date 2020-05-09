@@ -1,0 +1,34 @@
+.actors{
+    transition: all .3s ease;
+
+}
+
+.actors:hover{
+    transform: translateY(-1rem);
+    transition: all .3s ease;
+}
+
+/****************************** 10- Actor page*********************************/
+
+#actor-card{
+    grid-column: 1/2;
+    grid-row: 1/4;
+    align-self: center;
+    position: relative;
+    top: 4rem;
+}
+
+#actor-card img,#actor-card h3{
+    cursor: inherit;
+}
+
+#actor-details{
+    grid-column: 2/4;
+    grid-row: 1/4;
+    align-self: center;
+}
+
+#actor-details p {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}

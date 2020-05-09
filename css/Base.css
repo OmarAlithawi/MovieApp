@@ -1,0 +1,33 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Lato';
+    font-size: 62.5%;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(216, 224, 231);
+}
+
+.row{
+    max-width: 110rem;
+    margin: 0 auto;
+    
+}
+
+::-webkit-scrollbar{
+    background-color: transparent;
+}

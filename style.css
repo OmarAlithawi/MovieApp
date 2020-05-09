@@ -1,6 +1,6 @@
 
 /****************************** 1- Base*********************************/
-
+/*
 *{
     margin: 0;
     padding: 0;
@@ -218,7 +218,6 @@ body .nav_items .displayList{
     text-shadow: 5px 5px 12px rgba(0,0,0,.25);
     text-align: center;
     visibility: hidden;
-    
 }
 
 .hover-more-detials h4{
@@ -245,7 +244,7 @@ h4 .fas{
 
 
 .movieList:hover .hover-more-detials{
-    bottom: 60%;
+    bottom: 50%;
     z-index: 13;
     transition: all .9s ease;
     visibility: visible;
@@ -516,3 +515,5 @@ footer{
 footer p {
     color: white;
 }
+
+*/

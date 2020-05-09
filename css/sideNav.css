@@ -1,0 +1,117 @@
+nav{
+    flex: 0 0 20%;
+    background-color: #272838;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+nav a{
+    text-decoration: none;
+    color: white;
+    background-color: #A7BCD0;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 2rem;
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    z-index: 15;
+    transition: color .9s ease;
+}
+
+.nav_items{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+nav .nav_items a::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 4.1rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    z-index: -1;
+    transition: width .9s ease;
+
+}
+
+nav  a:hover::before{
+    width: 24.5rem;
+    transition: width .9s ease;
+    
+}
+
+nav a:hover{
+color: black;
+transition: color .9s ease;
+}
+
+.nav_items ul{
+    list-style: none;
+    display: none;
+    opacity: 0;
+    margin-top: 1.5rem;
+    width: 70%;
+    text-align: center;
+    transition: all .9s ease;
+}
+
+
+.nav_items ul li {
+    margin-top: 1rem;
+    background-color: #539CE2;
+    border-radius: 2rem;
+    padding: .3rem 0;
+    color: white;
+    font-size: 1.5rem;
+   position: relative;
+   z-index: 15;
+   cursor: pointer;
+   transition: color .9s ease;
+}
+
+
+.nav_items ul li::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2.5rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    z-index: -1;
+    transition: width .9s ease;
+}
+
+
+
+
+.nav_items ul li:hover{
+    color: #000;
+    transition: color .9s ease;
+}
+
+
+ .nav_items ul li:hover::after{
+    width: 17.3rem;
+    transition: width .9s ease;
+    
+}
+
+
+body .nav_items .displayList{
+    display: block;
+    opacity: 1;
+    transition: all .9s ease;
+    
+}

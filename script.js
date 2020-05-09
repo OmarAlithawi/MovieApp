@@ -1,3 +1,5 @@
+/*
+
 'use strict';
 
 //////////////////////Variables////////////////////
@@ -399,3 +401,5 @@ PROFILE_BTN.addEventListener('click', async () => {
   const movies = await fetchMovies(movieType);
   fetchProfiles(movies.results);
   })
+
+  */

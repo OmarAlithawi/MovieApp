@@ -1,0 +1,43 @@
+.search-box{
+    grid-row: 1/4;
+    grid-column: 1/4;
+    height: 28vh;
+    justify-self: end;
+    display: flex;
+    
+}
+
+#searchBar{
+    grid-row: 1/4;
+    grid-column: 1/4;
+    align-self: center;
+    width: 40rem;
+    height: 2.5rem;
+    border: .2rem solid #eee;
+    background-color: #A7BCD0;
+    padding: 2rem;
+    border-radius: 2rem;
+    text-transform: capitalize;
+    transition: width .5s ease;
+    
+}
+
+.search-Btn{
+    grid-row: 1/4;
+    grid-column: 1/4;
+    align-self: center;
+    position: relative;
+    right: 4rem;
+    z-index: 13;
+    font-size: 2rem;
+}
+
+
+#searchBar:focus{
+    border: .2rem solid blue;
+    border-radius: 2rem;
+    width: 42rem;
+    transition: width .5s ease;
+    outline: none;
+}
+

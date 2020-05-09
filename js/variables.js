@@ -1,3 +1,41 @@
+'use strict';
+
+//////////////////////Variables////////////////////
+
+const TMDB_BASE_URL = "https://api.themoviedb.org/3";
+const PROFILE_BASE_URL = "http://image.tmdb.org/t/p/w185";
+const BACKDROP_BASE_URL = "http://image.tmdb.org/t/p/w780";
+const CONTAINER = document.querySelector(".container");
+const PROFILE_BTN = document.querySelector('#profile-btn');
+const DROPDOWNFILTER = document.querySelectorAll('.dropDown_filter');
+const DROPDOWNGENRE = document.querySelectorAll('.dropDown_genre');
+let searchBtn = document.querySelector('#search-btn');
+let movieType='now_playing';
+const SEARCHHTML =`<div class="search-box">
+<input type="text" id="searchBar" placeholder="Search">
+<a  href="#" class="search-Btn" id="search-btn"> <i class="fas fa-search"></i></a>
+</div>`;
+let genreBTN = document.querySelector('#genre');
+let filterBTN = document.querySelector('#filter');
+let homeBtn = document.querySelector('#home');
+const row = document.querySelector(".row");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const genres = [
     {
       "id": 28,
