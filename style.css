@@ -14,6 +14,11 @@ html{
 
 body{
     display: flex;
+    flex-direction: column;
+}
+
+.wrapper{
+    display: flex;
     height: 100vh;
     width: 100%;
     background-color: rgb(216, 224, 231);
@@ -161,7 +166,8 @@ body .nav_items .displayList{
     grid-gap: 2rem;
     grid-column-gap: 5rem;
     height: 100vh;
-    overflow: scroll;
+    /* overflow: scroll; */
+    overflow-x: hidden;
    
 }
 
@@ -498,3 +504,15 @@ h4 .fas{
 }
 
 
+/****************************** 11- Footer*********************************/
+footer{
+    width: 100vw;
+    height: 10vh;
+    /* z-index: 15; */
+    background-color: black;
+    overflow: hidden;
+}
+
+footer p {
+    color: white;
+}
