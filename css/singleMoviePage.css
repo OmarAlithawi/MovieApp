@@ -74,16 +74,73 @@
     grid-column: 1/2;
     grid-row: 3/5;
     display: flex;
-    width: 100%;
+    width: 60%;
     justify-content: center;
     align-items: center;
     color: white;
     font-size: 1.8rem;
-    margin-left: 5rem;
+    margin-left: 10rem;
     border: .2rem solid #fff;
     height: 70%;
     border-radius: 2rem;
     padding: 0 .5rem;
     background-color: rgba(0,0,0,.70);
+}
+
+#similar {
+    margin-left: 3rem; 
+    grid-column: 1/5;
+    grid-row: 6/12;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    z-index: 13;
+    grid-gap: 4rem;
+}
+
+
+/* #similar{
+    display: flex;
+    list-style: none;
+    grid-column: 1/5;
+    grid-row: 7/10;
+    z-index: 11;
+    align-self: end;
+    justify-content: space-evenly;
+    color: white; 
+} */
+
+#similar #similar-heading{
+    font-size: 6rem;
+    margin-bottom: 5rem;
+    grid-row: 1/2;
+    grid-column: 1/4;
+    margin: 0 auto;
+    
+}
+
+#similar .movieList{
+    justify-content: center;
+}
+
+#actors img{
+    width: 6rem;
+    border-radius: .6rem;
+    transition: transform .5s ease;
+}
+
+#actors img:hover{
+    transform: scale(1.1);
+    transition: transform .5s ease;
+}
+
+#actors img:hover + h3{
+    transform: translateY(.5rem) scale(.9);
+    transition: transform .5s ease;
+}
+
+#actors h3{
+    text-align: center;
+    transition: transform .5s ease;
 }
 

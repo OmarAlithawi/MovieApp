@@ -15,13 +15,13 @@ const renderPerson = (person,knownFor) =>{
           <p><b>Biography :</b> ${person.biography}</p>
       </div>
   </div>
-  <ul id="actors">
+  <ul id="actors-movies">
   </ul>
   `
   for(let i = 0; i < 5; i++){
     let movie = knownFor[i];
     let img = checkImg(movie.backdrop_path);
-    let actors = document.querySelector('#actors');
+    let actors = document.querySelector('#actors-movies');
     let div = document.createElement('div');
     div.innerHTML=`<img src="${img}" alt="${
       movie.title
@@ -156,6 +156,10 @@ const renderPerson = (person,knownFor) =>{
               <h3 class= "castHeading">Cast:</h3>
               <ul id="actors" class="list-unstyled">
               </ul>
+
+              
+              <div id="similar">
+              <h4 id="similar-heading">SIMILAR MOVIES</h4></div>
           <iframe class="movie-trailer" src="https://www.youtube.com/embed/${videos.length === 0 ? videos.key:videos[0].key}" 
           frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
            allowfullscreen></iframe>`;
@@ -185,7 +189,7 @@ const renderPerson = (person,knownFor) =>{
       }
       
       if(typeof similar[0] === 'object'){
-      for (let j = 0 ; j < 5 && j < similar.length ; j++){
+      for (let j = 0 ; j < 6 && j < similar.length ; j++){
         let movie = similar[j];
         let similarMovie = document.querySelector('#similar');
         let movieDiv = document.createElement('div');
@@ -208,7 +212,8 @@ const renderPerson = (person,knownFor) =>{
       if(typeof movie.production_companies[0] === 'object'){
         const productionName = document.createElement('h4');
         const productionPicture = document.createElement('img');
-        productionPicture.setAttribute('src', PROFILE_BASE_URL + movie.production_companies[0].logo_path);
+        const productionImg = checkImg(movie.production_companies[0].logo_path)
+        productionPicture.setAttribute('src', productionImg);
         productionPicture.setAttribute('width', '80px')
         productionName.innerHTML = movie.production_companies[0].name;
         const productionDiv = document.querySelector('#produced-by');

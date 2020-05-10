@@ -1,4 +1,4 @@
-.actors{
+.actors-movives{
     transition: all .3s ease;
 
 }
@@ -31,4 +31,11 @@
 #actor-details p {
     font-size: 1.3rem;
     margin-top: 1rem;
+}
+
+#actors-movies div img{
+    height: 10rem;
+    object-fit: cover;
+    width: 12rem;
+    margin-right: 2rem;
 }
