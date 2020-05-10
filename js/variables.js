@@ -19,7 +19,10 @@ let genreBTN = document.querySelector('#genre');
 let filterBTN = document.querySelector('#filter');
 let homeBtn = document.querySelector('#home');
 const row = document.querySelector(".row");
-
+const HAMBURGER = document.querySelector('.hamburger-box');
+const NAV = document.querySelector('nav');
+const NAV_ITEMS = document.querySelectorAll('.nav_items');
+const FOOTER = document.querySelector('.footer');
 
 
 

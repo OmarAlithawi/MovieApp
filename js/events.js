@@ -29,3 +29,15 @@ for(let filter of DROPDOWNFILTER){
     const movies = await fetchMovies(movieType);
     fetchProfiles(movies.results);
     })
+
+   
+
+    HAMBURGER.addEventListener("click" , (e) =>{
+      NAV.classList.toggle("changeWidth")
+      NAV.classList.toggle("smallWidth")
+      HAMBURGER.classList.toggle("moveHamburger")
+      NAV_ITEMS.forEach(el =>{
+        el.classList.toggle("visibiltyTime");
+      })
+      FOOTER.classList.toggle("hidden");
+    })

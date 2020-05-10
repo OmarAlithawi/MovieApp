@@ -1,4 +1,4 @@
-
+/* 
 /****************************** 1- Base*********************************/
 /*
 *{
@@ -37,6 +37,7 @@ body{
 
 /****************************** 2- SideNav*********************************/
 
+/*
 nav{
     flex: 0 0 20%;
     background-color: #272838;
@@ -155,9 +156,9 @@ body .nav_items .displayList{
     
 }
 
-
+*/
 /****************************** 3- Container*********************************/
-
+/*
 .container{
     position: relative;
     display: grid;
@@ -166,12 +167,14 @@ body .nav_items .displayList{
     grid-gap: 2rem;
     grid-column-gap: 5rem;
     height: 100vh;
-    /* overflow: scroll; */
+  
     overflow-x: hidden;
    
 }
 
+/*/
 /****************************** 4- Movies List*********************************/
+/*
 .movieList{
     display: flex;
     flex-direction: column;
@@ -249,9 +252,10 @@ h4 .fas{
     transition: all .9s ease;
     visibility: visible;
 }
-
+*/
 
 /****************************** 5- Search Box*********************************/
+/*
 .search-box{
     grid-row: 1/4;
     grid-column: 1/4;
@@ -295,10 +299,10 @@ h4 .fas{
     outline: none;
 }
 
-
+*/
 
 /****************************** 6- single movie page*********************************/
-
+/*
 
 .movie-poster{
     grid-column: 1/6;
@@ -371,11 +375,11 @@ h4 .fas{
 .details h3{
     font-size: 3rem;
 }
-
+*/
 
 
 /****************************** 7- single movie page Actors*********************************/
-
+/*
 .castHeading{
     grid-column: 2/5;
     grid-row: 3/6;
@@ -441,14 +445,14 @@ h4 .fas{
 /* #similar h3{
     text-align: center;
 } */
-
+/*
 .castHeading{
     grid-column: 2/5;
     grid-row: 3/6;
     z-index: 11;}
-
+*/
 /****************************** 8- Movie Trailer*********************************/
-
+/*
 .movie-trailer{
     grid-column: 1/2;
     grid-row: 1/4;
@@ -464,9 +468,9 @@ h4 .fas{
     box-shadow: -5px -2px 9px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
   
 }
-
+*/
 /****************************** 9- Actors page*********************************/
-
+/*
 .actors{
     transition: all .3s ease;
 
@@ -478,7 +482,7 @@ h4 .fas{
 }
 
 /****************************** 10- Actor page*********************************/
-
+/*
 #actor-card{
     grid-column: 1/2;
     grid-row: 1/4;
@@ -501,13 +505,14 @@ h4 .fas{
     font-size: 1.3rem;
     margin-top: 1rem;
 }
-
+*/
 
 /****************************** 11- Footer*********************************/
+/*
 footer{
     width: 100vw;
     height: 10vh;
-    /* z-index: 15; */
+     z-index: 15; 
     background-color: black;
     overflow: hidden;
 }

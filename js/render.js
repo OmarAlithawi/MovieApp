@@ -148,14 +148,13 @@ const renderPerson = (person,knownFor) =>{
               <p id="movie-overview">${movie.overview} </p>
           </div>
           
-          
-          <h3 id="produced-by-header">Produced By<h3>
-          <div id="produced-by">
+          <div class ="production">
+            
+            <div id="produced-by">
+          </div>
           </div>
               <h3 class= "castHeading">Cast:</h3>
               <ul id="actors" class="list-unstyled">
-              </ul>
-              <ul id="similar" class="list-unstyled">
               </ul>
           <iframe class="movie-trailer" src="https://www.youtube.com/embed/${videos.length === 0 ? videos.key:videos[0].key}" 
           frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -194,7 +193,12 @@ const renderPerson = (person,knownFor) =>{
         movieDiv.innerHTML=`<img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
           movie.title
         } poster" class = "movieImg">
-            <h3>${movie.title}</h3> class="movieList-Heading"`;
+            <h3 class="movieList-Heading">${movie.title}</h3> 
+            <div class="hover-more-detials">
+          <h4>${movie.release_date}</h4>
+          <h4>${movie.vote_average} / 10 <i class="fas fa-star"></i></h4>
+          </div>`
+            
         movieDiv.addEventListener("click", () => {
         movieDetails(movie);
         });
@@ -205,7 +209,7 @@ const renderPerson = (person,knownFor) =>{
         const productionName = document.createElement('h4');
         const productionPicture = document.createElement('img');
         productionPicture.setAttribute('src', PROFILE_BASE_URL + movie.production_companies[0].logo_path);
-        productionPicture.setAttribute('width', '50px')
+        productionPicture.setAttribute('width', '80px')
         productionName.innerHTML = movie.production_companies[0].name;
         const productionDiv = document.querySelector('#produced-by');
         productionDiv.appendChild(productionName);
