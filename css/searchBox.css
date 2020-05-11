@@ -41,3 +41,45 @@
     outline: none;
 }
 
+@media only screen and (max-width:930px){
+    #searchBar{
+        width:30rem;
+    }
+    #searchBar:focus{
+        width: 32rem;
+    }
+}
+
+@media only screen and (max-width:490px){
+    #searchBar{
+        width: 20rem;
+        height: 2rem;
+        
+    }
+
+    #searchBar:focus{
+        width: 22rem;
+    }
+
+    .search-box{
+       position: relative;
+       left: 3rem;
+    }
+}
+
+@media only screen and (max-width:390px){
+    #searchBar{
+        width: 15rem;
+        height: 1.5rem;
+        
+    }
+
+    #searchBar:focus{
+        width: 17rem;
+    }
+
+    .search-box{
+       position: relative;
+       left: 6rem;
+    }
+}
