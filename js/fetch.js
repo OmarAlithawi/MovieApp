@@ -50,9 +50,12 @@ const fetchPerson = async (personId) =>{
           const search = await fetchSearch(searchBar.value);
           renderMovies(search.results);
         })
+        const allActors = document.createElement("div");
+      allActors.setAttribute("class" , "all-movies")
+      CONTAINER.appendChild(allActors);
       for(let movie of movies){
       const credit = await fetchMovie(movie.id+"/credits")
-      renderProfiles(credit);}
+      renderProfiles(credit , allActors);}
         
     }
     

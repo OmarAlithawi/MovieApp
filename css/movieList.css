@@ -1,3 +1,16 @@
+
+.all-movies{
+    grid-column: 1/5;
+    grid-row: 4/12;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    z-index: 13;
+    grid-gap: 2rem;
+    justify-content: center;
+}
+
+
 .movieList{
     display: flex;
     flex-direction: column;
@@ -5,6 +18,7 @@
     position: relative;
     cursor: pointer;
 }
+
 
 .movieList-Heading{
     color: #272838;
@@ -74,4 +88,59 @@ h4 .fas{
     z-index: 13;
     transition: all .9s ease;
     visibility: visible;
+}
+
+
+@media only screen and (max-width:1000px){
+    .all-movies{
+        grid-template-columns: repeat(2 , 1fr);
+    }
+
+    .row{
+        width: 85rem;
+    }
+}
+
+
+@media only screen and (max-width:900px){
+  
+    .row{
+        width: 70rem;
+    }
+}
+
+
+@media only screen and (max-width:800px){
+  
+    .row{
+        width:60rem;
+    }
+}
+
+@media only screen and (max-width:700px){
+    .all-movies{
+        grid-template-columns: repeat(1 , 1fr);
+    }
+  
+    .row{
+        width:50rem;
+    }
+}
+
+@media only screen and (max-width:577px){
+    .row{
+        width:40rem;
+    }
+}
+
+@media only screen and (max-width:500px){
+    .row{
+        width:30rem;
+    }
+}
+
+@media only screen and (max-width:400px){
+    .row{
+        width:20rem;
+    }
 }

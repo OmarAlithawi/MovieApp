@@ -35,15 +35,16 @@ const renderPerson = (person,knownFor) =>{
   
   }
   
-  const renderProfiles = (credit) => {
+  const renderProfiles = (credit ,allActors) => {
     row.classList.add("row");
+    
     for(let i = 0; i < 8; i++){
         let cast = credit.cast[i];
         let imgLink = checkImg(cast.profile_path);
         let div = document.createElement('div');
         div.setAttribute('class' , 'actors')
         div.innerHTML=`<img src="${imgLink}" width=48px  class ="movieImg"/><h3 class = "movieList-Heading">${cast.name}</h3>`;
-       CONTAINER.appendChild(div)
+       allActors.appendChild(div)
        div.addEventListener('click', (e)=>{
         presonDetails(cast.id);
       })
@@ -83,7 +84,9 @@ const renderPerson = (person,knownFor) =>{
   
     row.classList.add('row');
     row.scrollTo(0,0)
-  
+      const allMovies = document.createElement("div");
+      allMovies.setAttribute("class" , "all-movies")
+      CONTAINER.appendChild(allMovies);
     movies.map((movie,index) => {
   
       let imgLink =checkImg(movie.backdrop_path);
@@ -99,7 +102,7 @@ const renderPerson = (person,knownFor) =>{
           <h4>${movie.release_date}</h4>
           <h4>${movie.vote_average} / 10 <i class="fas fa-star"></i></h4>
           </div>`
-        CONTAINER.appendChild(movieDiv);
+        allMovies.appendChild(movieDiv);
         const hoverMoreDetails = document.querySelectorAll('.hover-more-detials')[index];
   
         const genreArr = movie.genre_ids.map((genre)=>{
@@ -153,7 +156,7 @@ const renderPerson = (person,knownFor) =>{
             <div id="produced-by">
           </div>
           </div>
-              <h3 class= "castHeading">Cast:</h3>
+
               <ul id="actors" class="list-unstyled">
               </ul>
 
