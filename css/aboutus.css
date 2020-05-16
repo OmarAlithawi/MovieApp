@@ -1,0 +1,32 @@
+#omar-profile img {
+  width: 20rem;
+  border-radius: 50%;
+  height: 20rem;
+  position: relative;
+  right: 9rem;
+}
+#omar-profile {
+  grid-row: 4/5;
+  grid-column: 2/3;
+  justify-content: end;
+  z-index: 15;
+  color: red;
+  display: flex;
+}
+
+#halit img {
+  width: 20rem;
+  border-radius: 50%;
+  height: 20rem;
+}
+#halit {
+  display: flex;
+  color: red;
+  grid-row: 4/5;
+  grid-column: 3/4;
+  z-index: 15;
+}
+#movie-backdrop {
+  width: 100%;
+  grid-column: 1/12;
+}
